@@ -5,7 +5,7 @@ import com.workintech.s18d2.entity.FruitType;
 import com.workintech.s18d2.entity.Vegetable;
 import com.workintech.s18d2.exceptions.PlantException;
 import com.workintech.s18d2.repository.FruitRepository;
-import com.workintech.s18d2.services.FruitServiceImpl;
+import com.workintech.s18d2.service.FruitServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

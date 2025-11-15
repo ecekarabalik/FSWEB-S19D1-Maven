@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.workintech.s18d2.controller.FruitController;
 import com.workintech.s18d2.entity.Fruit;
 import com.workintech.s18d2.entity.FruitType;
-import com.workintech.s18d2.services.FruitService;
+import com.workintech.s18d2.service.FruitService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
