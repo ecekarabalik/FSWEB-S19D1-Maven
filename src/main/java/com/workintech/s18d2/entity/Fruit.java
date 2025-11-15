@@ -1,15 +1,15 @@
 package com.workintech.s18d2.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "fruits")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Fruit {
 
     @Id
@@ -20,9 +20,6 @@ public class Fruit {
 
     private Double price;
 
-    // TESTLER setFruitType / getFruitType bekliyor
     @Enumerated(EnumType.STRING)
     private FruitType fruitType;
 }
-
-

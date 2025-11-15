@@ -11,9 +11,10 @@ public interface VegetableRepository {
 
     Optional<Vegetable> findById(Long id);
 
-    // TESTİN ARADIĞI METOT İSİMLERİ
     List<Vegetable> getByPriceAsc();
+
     List<Vegetable> getByPriceDesc();
+
     List<Vegetable> searchByName(String name);
 
     void delete(Vegetable vegetable);

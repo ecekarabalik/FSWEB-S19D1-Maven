@@ -22,35 +22,38 @@ public class VegetableRepositoryImpl implements VegetableRepository {
 
     @Override
     public Optional<Vegetable> findById(Long id) {
-        Vegetable v = entityManager.find(Vegetable.class, id);
-        return Optional.ofNullable(v);
+        Vegetable vegetable = entityManager.find(Vegetable.class, id);
+        return Optional.ofNullable(vegetable);
     }
 
     @Override
     public List<Vegetable> getByPriceAsc() {
-        TypedQuery<Vegetable> query =
-                entityManager.createQuery("SELECT v FROM Vegetable v ORDER BY v.price ASC", Vegetable.class);
+        TypedQuery<Vegetable> query = entityManager.createQuery(
+                "SELECT v FROM Vegetable v ORDER BY v.price ASC", Vegetable.class);
         return query.getResultList();
     }
 
     @Override
     public List<Vegetable> getByPriceDesc() {
-        TypedQuery<Vegetable> query =
-                entityManager.createQuery("SELECT v FROM Vegetable v ORDER BY v.price DESC", Vegetable.class);
+        TypedQuery<Vegetable> query = entityManager.createQuery(
+                "SELECT v FROM Vegetable v ORDER BY v.price DESC", Vegetable.class);
         return query.getResultList();
     }
 
     @Override
     public List<Vegetable> searchByName(String name) {
-        TypedQuery<Vegetable> query =
-                entityManager.createQuery("SELECT v FROM Vegetable v WHERE LOWER(v.name) LIKE LOWER(:name)",
-                        Vegetable.class);
+        TypedQuery<Vegetable> query = entityManager.createQuery(
+                "SELECT v FROM Vegetable v WHERE LOWER(v.name) LIKE LOWER(:name)", Vegetable.class);
         query.setParameter("name", "%" + name + "%");
         return query.getResultList();
     }
 
     @Override
     public void delete(Vegetable vegetable) {
-        entityManager.remove(vegetable);
+        Vegetable managed = vegetable;
+        if (!entityManager.contains(vegetable)) {
+            managed = entityManager.merge(vegetable);
+        }
+        entityManager.remove(managed);
     }
 }

@@ -11,10 +11,11 @@ public interface FruitRepository {
 
     Optional<Fruit> findById(Long id);
 
-    // TESTLERİN ARADIĞI METOT İSİMLERİ
-    List<Fruit> findAllByPriceAsc();
-    List<Fruit> findAllByPriceDesc();
-    List<Fruit> findByNameContains(String name);
+    List<Fruit> getByPriceAsc();
+
+    List<Fruit> getByPriceDesc();
+
+    List<Fruit> searchByName(String name);
 
     void delete(Fruit fruit);
 }

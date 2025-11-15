@@ -4,14 +4,15 @@ import org.springframework.http.HttpStatus;
 
 public class PlantException extends RuntimeException {
 
-    private final HttpStatus httpStatus;
+    private final HttpStatus status;
 
-    public PlantException(String message, HttpStatus httpStatus) {
+    public PlantException(String message, HttpStatus status) {
         super(message);
-        this.httpStatus = httpStatus;
+        this.status = status;
     }
 
-    public HttpStatus getHttpStatus() {
-        return httpStatus;
+    public HttpStatus getStatus() {
+        return status;
     }
 }
+

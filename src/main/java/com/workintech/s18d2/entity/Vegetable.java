@@ -1,14 +1,15 @@
 package com.workintech.s18d2.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "vegetables")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Table(name="vegetables")
 public class Vegetable {
 
     @Id
@@ -19,5 +20,5 @@ public class Vegetable {
 
     private Double price;
 
-    private boolean isGrownOnTree;
+    private boolean grownOnTree;
 }

@@ -27,29 +27,33 @@ public class FruitRepositoryImpl implements FruitRepository {
     }
 
     @Override
-    public List<Fruit> findAllByPriceAsc() {
-        TypedQuery<Fruit> query =
-                entityManager.createQuery("SELECT f FROM Fruit f ORDER BY f.price ASC", Fruit.class);
+    public List<Fruit> getByPriceAsc() {
+        TypedQuery<Fruit> query = entityManager.createQuery(
+                "SELECT f FROM Fruit f ORDER BY f.price ASC", Fruit.class);
         return query.getResultList();
     }
 
     @Override
-    public List<Fruit> findAllByPriceDesc() {
-        TypedQuery<Fruit> query =
-                entityManager.createQuery("SELECT f FROM Fruit f ORDER BY f.price DESC", Fruit.class);
+    public List<Fruit> getByPriceDesc() {
+        TypedQuery<Fruit> query = entityManager.createQuery(
+                "SELECT f FROM Fruit f ORDER BY f.price DESC", Fruit.class);
         return query.getResultList();
     }
 
     @Override
-    public List<Fruit> findByNameContains(String name) {
-        TypedQuery<Fruit> query =
-                entityManager.createQuery("SELECT f FROM Fruit f WHERE LOWER(f.name) LIKE LOWER(:name)", Fruit.class);
+    public List<Fruit> searchByName(String name) {
+        TypedQuery<Fruit> query = entityManager.createQuery(
+                "SELECT f FROM Fruit f WHERE LOWER(f.name) LIKE LOWER(:name)", Fruit.class);
         query.setParameter("name", "%" + name + "%");
         return query.getResultList();
     }
 
     @Override
     public void delete(Fruit fruit) {
-        entityManager.remove(fruit);
+        Fruit managed = fruit;
+        if (!entityManager.contains(fruit)) {
+            managed = entityManager.merge(fruit);
+        }
+        entityManager.remove(managed);
     }
 }

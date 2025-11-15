@@ -14,14 +14,14 @@ public class VegetableController {
 
     private final VegetableService vegetableService;
 
+    @GetMapping
+    public List<Vegetable> getByPriceAsc() {
+        return vegetableService.getByPriceAsc();
+    }
+
     @GetMapping("/{id}")
     public Vegetable getById(@PathVariable Long id) {
         return vegetableService.getById(id);
-    }
-
-    @GetMapping("/asc")
-    public List<Vegetable> getByPriceAsc() {
-        return vegetableService.getByPriceAsc();
     }
 
     @GetMapping("/desc")
@@ -29,14 +29,14 @@ public class VegetableController {
         return vegetableService.getByPriceDesc();
     }
 
-    @GetMapping("/search/{name}")
-    public List<Vegetable> searchByName(@PathVariable String name) {
-        return vegetableService.searchByName(name);
-    }
-
     @PostMapping
     public Vegetable save(@RequestBody Vegetable vegetable) {
         return vegetableService.save(vegetable);
+    }
+
+    @PostMapping("/{name}")
+    public List<Vegetable> searchByName(@PathVariable String name) {
+        return vegetableService.searchByName(name);
     }
 
     @DeleteMapping("/{id}")

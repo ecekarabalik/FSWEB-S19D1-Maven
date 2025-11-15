@@ -14,37 +14,31 @@ public class FruitController {
 
     private final FruitService fruitService;
 
-    // TESTİN BEKLEDİĞİ: /fruits/{id}
+    @GetMapping
+    public List<Fruit> getByPriceAsc() {
+        return fruitService.getByPriceAsc();
+    }
+
     @GetMapping("/{id}")
     public Fruit getById(@PathVariable Long id) {
         return fruitService.getById(id);
     }
 
-    // TESTİN BEKLEDİĞİ: /fruits/asc
-    @GetMapping("/asc")
-    public List<Fruit> getByPriceAsc() {
-        return fruitService.getByPriceAsc();
-    }
-
-    // TESTİN BEKLEDİĞİ: /fruits/desc
     @GetMapping("/desc")
     public List<Fruit> getByPriceDesc() {
         return fruitService.getByPriceDesc();
     }
 
-    // TESTİN BEKLEDİĞİ: /fruits/search/{name}
-    @GetMapping("/search/{name}")
-    public List<Fruit> search(@PathVariable String name) {
-        return fruitService.searchByName(name);
-    }
-
-    // TESTİN BEKLEDİĞİ: /fruits (POST)
     @PostMapping
     public Fruit save(@RequestBody Fruit fruit) {
         return fruitService.save(fruit);
     }
 
-    // TESTİN BEKLEDİĞİ: /fruits/{id} (DELETE)
+    @PostMapping("/{name}")
+    public List<Fruit> searchByName(@PathVariable String name) {
+        return fruitService.searchByName(name);
+    }
+
     @DeleteMapping("/{id}")
     public Fruit delete(@PathVariable Long id) {
         return fruitService.delete(id);
